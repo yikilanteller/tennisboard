@@ -20,16 +20,10 @@ Tamamen çevrimdışı (offline) çalışabilen, yerel ağ üzerinden mobil ciha
 
 ## Kurulum ve Çalıştırma
 
-### 1. Geliştirici Modunda Çalıştırma
-Projeyi bilgisayarınıza indirdikten sonra terminal üzerinden şu komutları çalıştırın:
-```bash
-npm install
-npm start
-```
+Bu projeyi kullanmak için herhangi bir kodlama bilginize veya kurulum yapmanıza gerek yoktur.
 
-### 2. Taşınabilir (Portable) .exe Olarak Derleme
-Uygulamayı hiçbir kurulum gerektirmeyen tek bir `.exe` dosyası haline getirmek için:
-```bash
-npm run build
-```
-Derleme işlemi bittikten sonra `dist-app/` klasöründe yer alan `.exe` dosyasını herhangi bir Windows bilgisayarda direkt çalıştırabilirsiniz.
+1. Yukarıdaki dosya listesinden `dist-app` klasörüne tıklayın.
+2. İçerisindeki **`Skor Tabela 1.0.0.exe`** dosyasına tıklayın ve açılan sayfada sağ taraftaki **"Download raw file"** (İndir) butonuna basarak dosyayı bilgisayarınıza indirin.
+3. İndirdiğiniz `.exe` dosyasına çift tıklayarak uygulamayı anında başlatabilirsiniz. (İnternet gerekmez).
+
+*(Not: Geliştiriciler projeyi klonlayıp `npm install` ve `npm start` komutlarıyla kaynak kodları üzerinden de çalıştırabilirler).*

@@ -1,4 +1,5 @@
 node_modules/
-dist-app/
+dist-app/*
+!dist-app/Skor Tabela 1.0.0.exe
 .env
 *.log
