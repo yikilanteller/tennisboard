@@ -2,6 +2,12 @@
 
 Tamamen çevrimdışı (offline) çalışabilen, yerel ağ üzerinden mobil cihazlarla kontrol edilebilen, TV yayını kalitesinde animasyonlara sahip masaüstü tenis skorbord uygulaması.
 
+### 📸 Ekran Görüntüleri
+
+| Masaüstü Kontrol Paneli | Mobil Hakem Paneli | Projeksiyon Ekranı |
+|:---:|:---:|:---:|
+| <img src="screenshots/desktop.png" width="100%"> | <img src="screenshots/mobile.png" width="100%"> | <img src="screenshots/projection.png" width="100%"> |
+
 ## Özellikler
 
 * **Tamamen Çevrimdışı (Offline):** İnternet bağlantısına ihtiyaç duymadan bilgisayarın kendi ağı üzerinden çalışır.
