@@ -1,5 +1,16 @@
 const socket = io();
 
+function applyLanguage(lang) {
+    const t = translations[lang];
+    if (!t) return;
+    document.querySelectorAll('[data-i18n]').forEach(el => {
+        const key = el.getAttribute('data-i18n');
+        if (t[key]) {
+            el.innerText = t[key];
+        }
+    });
+}
+
 const els = {
     clubLogo: document.getElementById('clubLogo'),
     sponsorLogo: document.getElementById('sponsorLogo'),
@@ -33,8 +44,13 @@ function updateWithAnim(el, newValue) {
     }
 }
 
+let currentLang = 'tr';
+
 function renderState(state) {
     if (!state) return;
+    
+    currentLang = state.settings.language || 'tr';
+    applyLanguage(currentLang);
 
     // Settings
     els.tName.innerText = state.settings.tournamentName;
@@ -86,10 +102,11 @@ socket.on('timer-updated', (timer) => {
     if (timer.active) {
         els.timerOverlay.classList.add('show');
         
+        const t = translations[currentLang] || translations['tr'];
         let label = 'SÜRE';
-        if (timer.type === 'serve') label = 'SERVİS SÜRESİ';
-        else if (timer.type === 'rest') label = 'MOLA';
-        els.timerLabel.innerText = label;
+        if (timer.type === 'serve') label = t.timerServe.replace(' (25s)', '');
+        else if (timer.type === 'rest') label = t.timerRest.replace(' (60s)', '');
+        els.timerLabel.innerText = label.toUpperCase();
 
         const mins = Math.floor(timer.remainingTime / 60);
         const secs = timer.remainingTime % 60;
@@ -115,11 +132,12 @@ socket.on('timer-updated', (timer) => {
 });
 
 let animTimeout;
-socket.on('show-animation', (text) => {
+socket.on('show-animation', (textKey) => {
     const overlay = document.getElementById('animationOverlay');
     const animText = document.getElementById('animationText');
     
-    animText.innerText = text;
+    const t = translations[currentLang] || translations['tr'];
+    animText.innerText = t[textKey] || textKey;
     overlay.classList.add('show');
     
     clearTimeout(animTimeout);

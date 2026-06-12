@@ -1,5 +1,6 @@
 const state = {
   settings: {
+    language: 'tr',
     clubLogo: '', // URL or base64
     sponsorLogo: '',
     tournamentName: '#KortFinalleri',

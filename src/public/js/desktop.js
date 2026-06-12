@@ -18,7 +18,19 @@ function getPrevPoint(current) {
 
 let currentState = null;
 
+function applyLanguage(lang) {
+    const t = translations[lang];
+    if (!t) return;
+    document.querySelectorAll('[data-i18n]').forEach(el => {
+        const key = el.getAttribute('data-i18n');
+        if (t[key]) {
+            el.innerText = t[key];
+        }
+    });
+}
+
 const els = {
+    languageSelect: document.getElementById('languageSelect'),
     clubLogo: document.getElementById('clubLogo'),
     sponsorLogo: document.getElementById('sponsorLogo'),
     tournamentName: document.getElementById('tournamentName'),
@@ -49,6 +61,9 @@ const els = {
 function renderState(state) {
     if (!state) return;
     
+    els.languageSelect.value = state.settings.language || 'tr';
+    applyLanguage(state.settings.language || 'tr');
+
     if (document.activeElement !== els.tournamentName) els.tournamentName.value = state.settings.tournamentName || '';
     els.scoringSystem.value = state.settings.scoringSystem || 'ad';
     els.setFormat.value = state.settings.setFormat || 'normal';
@@ -58,11 +73,11 @@ function renderState(state) {
     els.p1Games.innerText = state.match.player1.games;
     els.p1Points.innerText = state.match.player1.points;
     if (state.match.server === 1) {
-        els.p1ServeBtn.classList.add('serve-active');
-        els.p1ServeBtn.innerText = "🎾 Servis";
+        els.p1ServeBtn.classList.add('active');
+        els.p1ServeBtn.innerText = translations[state.settings.language || 'tr'].serveActive;
     } else {
-        els.p1ServeBtn.classList.remove('serve-active');
-        els.p1ServeBtn.innerText = "Servis Bende";
+        els.p1ServeBtn.classList.remove('active');
+        els.p1ServeBtn.innerText = translations[state.settings.language || 'tr'].serveInactive;
     }
 
     if (document.activeElement !== els.p2Name) els.p2Name.value = state.match.player2.name;
@@ -70,11 +85,11 @@ function renderState(state) {
     els.p2Games.innerText = state.match.player2.games;
     els.p2Points.innerText = state.match.player2.points;
     if (state.match.server === 2) {
-        els.p2ServeBtn.classList.add('serve-active');
-        els.p2ServeBtn.innerText = "🎾 Servis";
+        els.p2ServeBtn.classList.add('active');
+        els.p2ServeBtn.innerText = translations[state.settings.language || 'tr'].serveActive;
     } else {
-        els.p2ServeBtn.classList.remove('serve-active');
-        els.p2ServeBtn.innerText = "Servis Bende";
+        els.p2ServeBtn.classList.remove('active');
+        els.p2ServeBtn.innerText = translations[state.settings.language || 'tr'].serveInactive;
     }
 
     els.isTieBreak.checked = state.match.isTieBreak;
@@ -142,6 +157,7 @@ function compressImage(file, maxWidth = 600, maxHeight = 600) {
 }
 
 els.saveSettingsBtn.addEventListener('click', async () => {
+    currentState.settings.language = els.languageSelect.value;
     currentState.settings.tournamentName = els.tournamentName.value;
     currentState.settings.scoringSystem = els.scoringSystem.value;
     currentState.settings.setFormat = els.setFormat.value;
@@ -166,6 +182,10 @@ els.saveSettingsBtn.addEventListener('click', async () => {
 
 els.p1Name.addEventListener('change', () => { currentState.match.player1.name = els.p1Name.value; updateServerState(); });
 els.p2Name.addEventListener('change', () => { currentState.match.player2.name = els.p2Name.value; updateServerState(); });
+els.languageSelect.addEventListener('change', () => { 
+    currentState.settings.language = els.languageSelect.value;
+    updateServerState();
+});
 
 document.getElementById('clearClubLogoBtn').addEventListener('click', () => {
     els.clubLogo.value = "";
@@ -237,7 +257,8 @@ document.getElementById('resetSetsBtn').addEventListener('click', () => {
 });
 
 document.getElementById('resetMatchBtn').addEventListener('click', () => {
-    if(confirm('Maçı sıfırlamak istediğinize emin misiniz?')) {
+    const msg = translations[currentState?.settings?.language || 'tr'].confirmMatchReset;
+    if(confirm(msg)) {
         currentState.match.player1.points = '0';
         currentState.match.player2.points = '0';
         currentState.match.player1.games = 0;
@@ -265,12 +286,8 @@ els.isMatchTieBreak.addEventListener('change', (e) => {
 });
 
 // Animations
-document.getElementById('animSetPointBtn').addEventListener('click', () => {
-    socket.emit('trigger-animation', 'SET PUANI');
-});
-document.getElementById('animMatchPointBtn').addEventListener('click', () => {
-    socket.emit('trigger-animation', 'MAÇ PUANI');
-});
+document.getElementById('animSetPointBtn').addEventListener('click', () => socket.emit('trigger-animation', 'animSetText'));
+document.getElementById('animMatchPointBtn').addEventListener('click', () => socket.emit('trigger-animation', 'animMatchText'));
 
 // Timers
 document.getElementById('timerServeBtn').addEventListener('click', () => socket.emit('timer-command', { command: 'start', value: 25 }));

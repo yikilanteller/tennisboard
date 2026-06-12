@@ -5,6 +5,7 @@
     <title>Skor Tabela - Projeksiyon Ekranı</title>
     <link rel="stylesheet" href="css/common.css">
     <link rel="stylesheet" href="css/projection.css">
+    <script src="js/translations.js"></script>
 </head>
 <body>
     <div class="projection-container">
@@ -19,13 +20,13 @@
         <!-- Timer Display (Hidden by default) -->
         <div class="timer-overlay" id="timerOverlay">
             <div class="timer-box">
-                <span class="timer-label" id="timerLabel">SERVİS SÜRESİ</span>
+                <span class="timer-label" id="timerLabel" data-i18n="timerServe">SERVİS SÜRESİ</span>
                 <span class="timer-value" id="timerValue">25</span>
             </div>
         </div>
 
         <div class="animation-overlay" id="animationOverlay">
-            <span class="animation-text" id="animationText">SET PUANI</span>
+            <span class="animation-text" id="animationText" data-i18n="animSetText">SET PUANI</span>
         </div>
 
         <!-- Scoreboard -->
@@ -33,9 +34,9 @@
             <!-- Header Row -->
             <div class="score-header-row">
                 <div class="col-name"></div>
-                <div class="col-score">SET</div>
-                <div class="col-score">OYUN</div>
-                <div class="col-score highlight">PUAN</div>
+                <div class="col-score" data-i18n="set">SET</div>
+                <div class="col-score" data-i18n="game">OYUN</div>
+                <div class="col-score highlight" data-i18n="point">PUAN</div>
             </div>
 
             <!-- Player 1 Row -->

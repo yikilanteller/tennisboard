@@ -18,6 +18,17 @@ function getPrevPoint(current) {
 
 let currentState = null;
 
+function applyLanguage(lang) {
+    const t = translations[lang];
+    if (!t) return;
+    document.querySelectorAll('[data-i18n]').forEach(el => {
+        const key = el.getAttribute('data-i18n');
+        if (t[key]) {
+            el.innerText = t[key];
+        }
+    });
+}
+
 const els = {
     tNameDisplay: document.getElementById('tournamentNameDisplay'),
     rulesBadge: document.getElementById('rulesBadge'),
@@ -41,9 +52,13 @@ const els = {
 function renderState(state) {
     if (!state) return;
     
+    const lang = state.settings.language || 'tr';
+    applyLanguage(lang);
+    const t = translations[lang];
+    
     els.tNameDisplay.innerText = state.settings.tournamentName || '';
-    const scoringText = state.settings.scoringSystem === 'ad' ? 'Avantajlı' : 'Altın Puan';
-    const setText = state.settings.setFormat === 'normal' ? 'Normal Set' : 'Maç TB';
+    const scoringText = state.settings.scoringSystem === 'ad' ? t.rulesBadgeAd : t.rulesBadgeNoAd;
+    const setText = state.settings.setFormat === 'normal' ? t.rulesBadgeNormal : t.rulesBadgeMatchTB;
     els.rulesBadge.innerText = `${scoringText} | ${setText}`;
 
     els.p1Name.innerText = state.match.player1.name;
@@ -52,12 +67,12 @@ function renderState(state) {
     els.p1Points.innerText = state.match.player1.points;
     if (state.match.server === 1) {
         els.p1ServeBtn.classList.add('active');
-        els.p1ServeBtn.innerText = "🎾 Servis";
+        els.p1ServeBtn.innerText = t.serveActive;
         document.getElementById('p1Card').style.borderColor = 'var(--accent-green)';
         document.getElementById('p2Card').style.borderColor = 'transparent';
     } else {
         els.p1ServeBtn.classList.remove('active');
-        els.p1ServeBtn.innerText = "Servis";
+        els.p1ServeBtn.innerText = t.serveInactive;
     }
 
     els.p2Name.innerText = state.match.player2.name;
@@ -66,12 +81,12 @@ function renderState(state) {
     els.p2Points.innerText = state.match.player2.points;
     if (state.match.server === 2) {
         els.p2ServeBtn.classList.add('active');
-        els.p2ServeBtn.innerText = "🎾 Servis";
+        els.p2ServeBtn.innerText = t.serveActive;
         document.getElementById('p2Card').style.borderColor = 'var(--accent-green)';
         document.getElementById('p1Card').style.borderColor = 'transparent';
     } else {
         els.p2ServeBtn.classList.remove('active');
-        els.p2ServeBtn.innerText = "Servis";
+        els.p2ServeBtn.innerText = t.serveInactive;
     }
 }
 
@@ -151,8 +166,8 @@ document.getElementById('resetSetsBtn').addEventListener('click', () => {
     currentState.match.player2.games = 0;
     updateServerState();
 });
-document.getElementById('animSetPointBtn').addEventListener('click', () => socket.emit('trigger-animation', 'SET PUANI'));
-document.getElementById('animMatchPointBtn').addEventListener('click', () => socket.emit('trigger-animation', 'MAÇ PUANI'));
+document.getElementById('animSetPointBtn').addEventListener('click', () => socket.emit('trigger-animation', 'animSetText'));
+document.getElementById('animMatchPointBtn').addEventListener('click', () => socket.emit('trigger-animation', 'animMatchText'));
 
 // Timers
 document.getElementById('timerServeBtn').addEventListener('click', () => socket.emit('timer-command', { command: 'start', value: 25 }));

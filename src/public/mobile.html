@@ -3,9 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Skor Tabela - Hakem Paneli</title>
+    <title>Skor Tabela - Mobil Panel</title>
     <link rel="stylesheet" href="css/common.css">
     <link rel="stylesheet" href="css/mobile.css">
+    <script src="js/translations.js"></script>
 </head>
 <body>
     <div class="mobile-container">
@@ -17,7 +18,7 @@
 
         <div class="timer-bar" id="timerBar" style="display: none;">
             <span id="mobileTimerDisplay">25s</span>
-            <button class="btn-red small-btn" id="stopTimerBtn">Durdur</button>
+            <button class="btn-red small-btn" id="stopTimerBtn" data-i18n="stop">Durdur</button>
         </div>
 
         <div class="players-container">
@@ -25,11 +26,10 @@
             <div class="player-card" id="p1Card">
                 <div class="player-header">
                     <span class="player-name" id="p1Name">Oyuncu 1</span>
-                    <button class="serve-btn-mobile" id="p1ServeBtn">Servis</button>
                 </div>
                 <div class="score-grid">
                     <div class="score-item">
-                        <span class="label">Set</span>
+                        <span class="label" data-i18n="set">Set</span>
                         <div class="mobile-controls">
                             <button class="btn-red xs-btn" id="p1SetMinus">-</button>
                             <span class="value" id="p1Sets">0</span>
@@ -37,7 +37,7 @@
                         </div>
                     </div>
                     <div class="score-item">
-                        <span class="label">Oyun</span>
+                        <span class="label" data-i18n="game">Oyun</span>
                         <div class="mobile-controls">
                             <button class="btn-red xs-btn" id="p1GameMinus">-</button>
                             <span class="value" id="p1Games">0</span>
@@ -45,13 +45,16 @@
                         </div>
                     </div>
                     <div class="score-item main-point">
-                        <span class="label">Puan</span>
+                        <span class="label" data-i18n="point">Puan</span>
                         <span class="value lg" id="p1Points">0</span>
                     </div>
                 </div>
-                <div class="action-buttons">
-                    <button class="btn-green huge-btn" id="p1PointPlus">+ PUAN</button>
-                    <button class="btn-red" id="p1PointMinus">Geri Al</button>
+                <div class="player-controls">
+                    <button class="btn-green main-btn" id="p1PointPlus" data-i18n="addPoint">+ PUAN</button>
+                    <div class="sub-actions">
+                        <button class="btn-red undo-btn" id="p1PointMinus" data-i18n="undo">Geri Al</button>
+                        <button class="btn-blue serve-btn" id="p1ServeBtn" data-i18n="serveInactive">Servis</button>
+                    </div>
                 </div>
             </div>
 
@@ -59,11 +62,10 @@
             <div class="player-card" id="p2Card">
                 <div class="player-header">
                     <span class="player-name" id="p2Name">Oyuncu 2</span>
-                    <button class="serve-btn-mobile" id="p2ServeBtn">Servis</button>
                 </div>
                 <div class="score-grid">
                     <div class="score-item">
-                        <span class="label">Set</span>
+                        <span class="label" data-i18n="set">Set</span>
                         <div class="mobile-controls">
                             <button class="btn-red xs-btn" id="p2SetMinus">-</button>
                             <span class="value" id="p2Sets">0</span>
@@ -71,7 +73,7 @@
                         </div>
                     </div>
                     <div class="score-item">
-                        <span class="label">Oyun</span>
+                        <span class="label" data-i18n="game">Oyun</span>
                         <div class="mobile-controls">
                             <button class="btn-red xs-btn" id="p2GameMinus">-</button>
                             <span class="value" id="p2Games">0</span>
@@ -79,27 +81,30 @@
                         </div>
                     </div>
                     <div class="score-item main-point">
-                        <span class="label">Puan</span>
+                        <span class="label" data-i18n="point">Puan</span>
                         <span class="value lg" id="p2Points">0</span>
                     </div>
                 </div>
-                <div class="action-buttons">
-                    <button class="btn-green huge-btn" id="p2PointPlus">+ PUAN</button>
-                    <button class="btn-red" id="p2PointMinus">Geri Al</button>
+                <div class="player-controls">
+                    <button class="btn-green main-btn" id="p2PointPlus" data-i18n="addPoint">+ PUAN</button>
+                    <div class="sub-actions">
+                        <button class="btn-red undo-btn" id="p2PointMinus" data-i18n="undo">Geri Al</button>
+                        <button class="btn-blue serve-btn" id="p2ServeBtn" data-i18n="serveInactive">Servis</button>
+                    </div>
                 </div>
             </div>
         </div>
 
         <!-- Animation and Timer Controls -->
         <div class="mobile-timers" style="flex-wrap: wrap;">
-            <button class="btn-yellow" id="resetSetsBtn" style="flex:1 0 100%; margin-bottom:10px;">Oyunları Sıfırla (0-0)</button>
-            <button class="btn-blue" id="animSetPointBtn" style="flex:1 0 45%;">✨ Set Puanı</button>
-            <button class="btn-green" id="animMatchPointBtn" style="flex:1 0 45%;">🏆 Maç Puanı</button>
+            <button class="btn-yellow" id="resetSetsBtn" style="flex:1 0 100%; margin-bottom:10px;" data-i18n="resetGamesBtn">Oyunları Sıfırla (0-0)</button>
+            <button class="btn-blue" id="animSetPointBtn" style="flex:1 0 45%;" data-i18n="animSetPoint">✨ Set Puanı</button>
+            <button class="btn-green" id="animMatchPointBtn" style="flex:1 0 45%;" data-i18n="animMatchPoint">🏆 Maç Puanı</button>
             
-            <button class="btn-blue" id="timerServeBtn" style="flex:1 0 20%;">25s Servis</button>
-            <button class="btn-blue" id="timerRest60Btn" style="flex:1 0 20%;">60s Mola</button>
-            <button class="btn-blue" id="timerRest120Btn" style="flex:1 0 20%;">120s Set</button>
-            <button class="btn-yellow" id="timerResetBtn" style="flex:1 0 20%;">Sıfırla</button>
+            <button class="btn-blue" id="timerServeBtn" style="flex:1 0 20%;" data-i18n="timerServeShort">25s Servis</button>
+            <button class="btn-blue" id="timerRest60Btn" style="flex:1 0 20%;" data-i18n="timerRestShort">60s Mola</button>
+            <button class="btn-blue" id="timerRest120Btn" style="flex:1 0 20%;" data-i18n="timerSetBreakShort">120s Set</button>
+            <button class="btn-yellow" id="timerResetBtn" style="flex:1 0 20%;" data-i18n="timerResetShort">Sıfırla</button>
         </div>
     </div>
 
