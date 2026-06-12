@@ -8,7 +8,7 @@ An entirely offline desktop tennis scoreboard application with TV-broadcast qual
 
 | Desktop Control Panel | Mobile Umpire Panel | Projection Screen |
 |:---:|:---:|:---:|
-| <img src="screenshots/desktop.png" width="100%"> | <img src="screenshots/mobile.png" width="100%"> | <img src="screenshots/projection.png" width="100%"> |
+| <img src="screenshots/desktop-panel.png" width="100%"> | <img src="screenshots/mobile.png" width="100%"> | <img src="screenshots/projection-screen.png" width="100%"> |
 
 ## 🇬🇧 English
 
