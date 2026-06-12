@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Skor Tabela - Hakem Paneli</title>
+    <link rel="stylesheet" href="css/common.css">
+    <link rel="stylesheet" href="css/mobile.css">
+</head>
+<body>
+    <div class="mobile-container">
+        <!-- Info Bar -->
+        <div class="info-bar">
+            <span id="tournamentNameDisplay">#Turnuva</span>
+            <span class="rules-badge" id="rulesBadge">Avantajlı | Normal Set</span>
+        </div>
+
+        <div class="timer-bar" id="timerBar" style="display: none;">
+            <span id="mobileTimerDisplay">25s</span>
+            <button class="btn-red small-btn" id="stopTimerBtn">Durdur</button>
+        </div>
+
+        <div class="players-container">
+            <!-- Player 1 -->
+            <div class="player-card" id="p1Card">
+                <div class="player-header">
+                    <span class="player-name" id="p1Name">Oyuncu 1</span>
+                    <button class="serve-btn-mobile" id="p1ServeBtn">Servis</button>
+                </div>
+                <div class="score-grid">
+                    <div class="score-item">
+                        <span class="label">Set</span>
+                        <div class="mobile-controls">
+                            <button class="btn-red xs-btn" id="p1SetMinus">-</button>
+                            <span class="value" id="p1Sets">0</span>
+                            <button class="btn-green xs-btn" id="p1SetPlus">+</button>
+                        </div>
+                    </div>
+                    <div class="score-item">
+                        <span class="label">Oyun</span>
+                        <div class="mobile-controls">
+                            <button class="btn-red xs-btn" id="p1GameMinus">-</button>
+                            <span class="value" id="p1Games">0</span>
+                            <button class="btn-green xs-btn" id="p1GamePlus">+</button>
+                        </div>
+                    </div>
+                    <div class="score-item main-point">
+                        <span class="label">Puan</span>
+                        <span class="value lg" id="p1Points">0</span>
+                    </div>
+                </div>
+                <div class="action-buttons">
+                    <button class="btn-green huge-btn" id="p1PointPlus">+ PUAN</button>
+                    <button class="btn-red" id="p1PointMinus">Geri Al</button>
+                </div>
+            </div>
+
+            <!-- Player 2 -->
+            <div class="player-card" id="p2Card">
+                <div class="player-header">
+                    <span class="player-name" id="p2Name">Oyuncu 2</span>
+                    <button class="serve-btn-mobile" id="p2ServeBtn">Servis</button>
+                </div>
+                <div class="score-grid">
+                    <div class="score-item">
+                        <span class="label">Set</span>
+                        <div class="mobile-controls">
+                            <button class="btn-red xs-btn" id="p2SetMinus">-</button>
+                            <span class="value" id="p2Sets">0</span>
+                            <button class="btn-green xs-btn" id="p2SetPlus">+</button>
+                        </div>
+                    </div>
+                    <div class="score-item">
+                        <span class="label">Oyun</span>
+                        <div class="mobile-controls">
+                            <button class="btn-red xs-btn" id="p2GameMinus">-</button>
+                            <span class="value" id="p2Games">0</span>
+                            <button class="btn-green xs-btn" id="p2GamePlus">+</button>
+                        </div>
+                    </div>
+                    <div class="score-item main-point">
+                        <span class="label">Puan</span>
+                        <span class="value lg" id="p2Points">0</span>
+                    </div>
+                </div>
+                <div class="action-buttons">
+                    <button class="btn-green huge-btn" id="p2PointPlus">+ PUAN</button>
+                    <button class="btn-red" id="p2PointMinus">Geri Al</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Animation and Timer Controls -->
+        <div class="mobile-timers" style="flex-wrap: wrap;">
+            <button class="btn-yellow" id="resetSetsBtn" style="flex:1 0 100%; margin-bottom:10px;">Oyunları Sıfırla (0-0)</button>
+            <button class="btn-blue" id="animSetPointBtn" style="flex:1 0 45%;">✨ Set Puanı</button>
+            <button class="btn-green" id="animMatchPointBtn" style="flex:1 0 45%;">🏆 Maç Puanı</button>
+            
+            <button class="btn-blue" id="timerServeBtn" style="flex:1 0 20%;">25s Servis</button>
+            <button class="btn-blue" id="timerRest60Btn" style="flex:1 0 20%;">60s Mola</button>
+            <button class="btn-blue" id="timerRest120Btn" style="flex:1 0 20%;">120s Set</button>
+            <button class="btn-yellow" id="timerResetBtn" style="flex:1 0 20%;">Sıfırla</button>
+        </div>
+    </div>
+
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="js/mobile.js"></script>
+</body>
+</html>

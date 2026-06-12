@@ -1,0 +1,173 @@
+body {
+    background-color: var(--bg-dark);
+    margin: 0;
+    padding: 0;
+    overscroll-behavior: none; /* Prevent pull-to-refresh on mobile */
+    -webkit-user-select: none; /* Prevent text selection */
+    user-select: none;
+}
+
+.mobile-container {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    padding: 10px;
+    gap: 10px;
+}
+
+.info-bar {
+    background: var(--bg-panel);
+    padding: 10px;
+    border-radius: 8px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 0.9rem;
+}
+
+.rules-badge {
+    background: #334155;
+    padding: 4px 8px;
+    border-radius: 4px;
+    font-size: 0.8rem;
+    color: var(--accent-yellow);
+}
+
+.timer-bar {
+    background: var(--accent-yellow);
+    color: var(--bg-dark);
+    padding: 10px;
+    border-radius: 8px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 1.5rem;
+    font-weight: bold;
+    font-family: 'Outfit', sans-serif;
+}
+
+.small-btn {
+    padding: 5px 15px;
+    font-size: 1rem;
+}
+
+.players-container {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.player-card {
+    flex: 1;
+    background: var(--bg-panel);
+    border-radius: 12px;
+    padding: 15px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.player-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+
+.serve-btn-mobile {
+    background: transparent;
+    border: 1px solid var(--text-muted);
+    padding: 5px 15px;
+    border-radius: 20px;
+    color: var(--text-muted);
+}
+
+.serve-active-mobile {
+    background: var(--accent-blue);
+    color: white;
+    border-color: var(--accent-blue);
+    box-shadow: 0 0 10px var(--accent-blue);
+}
+
+.score-grid {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 0;
+}
+
+.score-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.score-item .label {
+    font-size: 0.8rem;
+    color: var(--text-muted);
+    text-transform: uppercase;
+}
+
+.mobile-controls {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-top: 5px;
+}
+
+.xs-btn {
+    width: 30px;
+    height: 30px;
+    font-size: 1.2rem;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 4px;
+}
+
+.score-item .value {
+    font-size: 2rem;
+    font-weight: bold;
+    font-family: 'Outfit', sans-serif;
+}
+
+.score-item .value.lg {
+    font-size: 3.5rem;
+    color: var(--accent-green);
+}
+
+.main-point {
+    flex: 1;
+}
+
+.action-buttons {
+    display: flex;
+    gap: 10px;
+}
+
+.huge-btn {
+    flex: 2;
+    padding: 20px;
+    font-size: 1.5rem;
+    font-weight: 800;
+}
+
+.action-buttons .btn-red {
+    flex: 1;
+    font-size: 1.2rem;
+}
+
+.mobile-timers {
+    display: flex;
+    gap: 5px;
+    padding-bottom: 5px;
+}
+
+.mobile-timers button {
+    flex: 1;
+    padding: 15px 5px;
+    font-size: 0.9rem;
+}

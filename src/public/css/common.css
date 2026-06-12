@@ -1,0 +1,87 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&family=Outfit:wght@400;700;900&display=swap');
+
+:root {
+  --bg-dark: #0f172a; /* Tailwind Slate 900 */
+  --bg-panel: #1e293b; /* Tailwind Slate 800 */
+  --text-main: #f8fafc;
+  --text-muted: #94a3b8;
+  --accent-blue: #3b82f6;
+  --accent-blue-hover: #2563eb;
+  --accent-green: #10b981;
+  --accent-green-hover: #059669;
+  --accent-red: #ef4444;
+  --accent-red-hover: #dc2626;
+  --accent-yellow: #f59e0b;
+  --court-blue: #1e3a8a; /* Hard court inner */
+  --court-green: #064e3b; /* Hard court outer */
+}
+
+body {
+  margin: 0;
+  font-family: 'Inter', sans-serif;
+  background-color: var(--bg-dark);
+  color: var(--text-main);
+  box-sizing: border-box;
+}
+
+*, *::before, *::after {
+  box-sizing: inherit;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Outfit', sans-serif;
+  margin: 0 0 10px 0;
+}
+
+button {
+  font-family: 'Inter', sans-serif;
+  cursor: pointer;
+  border: none;
+  border-radius: 6px;
+  color: white;
+  font-weight: 600;
+  transition: all 0.2s;
+}
+
+button:active {
+  transform: scale(0.95);
+}
+
+.btn-blue { background-color: var(--accent-blue); }
+.btn-blue:hover { background-color: var(--accent-blue-hover); }
+
+.btn-green { background-color: var(--accent-green); }
+.btn-green:hover { background-color: var(--accent-green-hover); }
+
+.btn-red { background-color: var(--accent-red); }
+.btn-red:hover { background-color: var(--accent-red-hover); }
+
+.btn-yellow { background-color: var(--accent-yellow); color: #1e293b; }
+
+input, select {
+  font-family: 'Inter', sans-serif;
+  background-color: #334155;
+  color: white;
+  border: 1px solid #475569;
+  padding: 8px 12px;
+  border-radius: 4px;
+}
+
+input:focus, select:focus {
+  outline: none;
+  border-color: var(--accent-blue);
+}
+
+.panel {
+  background-color: var(--bg-panel);
+  border-radius: 12px;
+  padding: 20px;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+}
+
+.glass-panel {
+  background: rgba(30, 41, 59, 0.7);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 16px;
+}

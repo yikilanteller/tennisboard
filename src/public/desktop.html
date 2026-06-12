@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <title>Skor Tabela - Kontrol Paneli</title>
+    <link rel="stylesheet" href="css/common.css">
+    <link rel="stylesheet" href="css/desktop.css">
+</head>
+<body>
+    <div class="container">
+        <!-- Sol Taraf: Ayarlar -->
+        <div class="panel settings-panel">
+            <h2>Ayarlar</h2>
+            <div class="form-group">
+                <label>Kulüp Logosu (PC'den Seç):</label>
+                <div style="display: flex; gap: 5px;">
+                    <input type="file" id="clubLogo" accept="image/*">
+                    <button class="btn-red" id="clearClubLogoBtn" style="padding: 0 10px; font-size: 0.8rem;">Sil</button>
+                </div>
+            </div>
+            <div class="form-group">
+                <label>Sponsor Logosu (PC'den Seç):</label>
+                <div style="display: flex; gap: 5px;">
+                    <input type="file" id="sponsorLogo" accept="image/*">
+                    <button class="btn-red" id="clearSponsorLogoBtn" style="padding: 0 10px; font-size: 0.8rem;">Sil</button>
+                </div>
+            </div>
+            <div class="form-group">
+                <label>Turnuva Adı:</label>
+                <input type="text" id="tournamentName" value="#KortFinalleri">
+            </div>
+            <hr>
+            <h3>Ağ Bilgileri</h3>
+            <p style="font-size:0.8rem; color:#94a3b8; margin:0 0 10px 0;">PC veya Telefonunuzdan Hotspot açarak cihazları aynı ağa bağlayın. Ek ayar gerekmez.</p>
+            <hr>
+            <h3>Kurallar</h3>
+            <div class="form-group">
+                <label>Puanlama:</label>
+                <select id="scoringSystem">
+                    <option value="ad">Avantaj (Deuce-Ad)</option>
+                    <option value="no-ad">Karar Puanı (No-Ad)</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label>Set Formatı:</label>
+                <select id="setFormat">
+                    <option value="normal">Normal Set</option>
+                    <option value="match-tie-break">Maç Tie-Break (3. Set 10 Puan)</option>
+                </select>
+            </div>
+            <button class="btn-green save-btn" id="saveSettingsBtn">Ayarları Kaydet ve Yayınla</button>
+            <hr>
+            <button class="btn-blue lg-btn" id="openProjectionBtn">Projeksiyon Ekranını Aç</button>
+        </div>
+
+        <!-- Orta ve Sağ: Kontrol ve QR -->
+        <div class="main-content">
+            <!-- QR Kodlar -->
+            <div class="qr-container panel">
+                <div class="qr-box" style="width:100%;">
+                    <h4>Hakem Paneli (Mobil Bağlantı)</h4>
+                    <img id="qrMobile" style="width:150px; height:150px; display:block; margin:0 auto; background:#fff;">
+                    <div id="mobileUrl" class="url-text"></div>
+                    <p style="font-size:0.8rem; color:#94a3b8; margin-top:10px;">(Telefonunuzdan veya tabletinizden PC'nin internetine/hotspotuna bağlandıktan sonra bu kodu okutun)</p>
+                </div>
+            </div>
+
+            <!-- Skor Kontrol Paneli -->
+            <div class="score-panel panel">
+                <div class="player-controls">
+                    <!-- Oyuncu 1 -->
+                    <div class="player-col">
+                        <input type="text" id="p1Name" class="player-name-input" value="Oyuncu 1">
+                        <div class="score-display">
+                            <span class="label">Set</span>
+                            <div class="controls">
+                                <button class="btn-red" id="p1SetMinus">-</button>
+                                <span class="value" id="p1Sets">0</span>
+                                <button class="btn-green" id="p1SetPlus">+</button>
+                            </div>
+                        </div>
+                        <div class="score-display">
+                            <span class="label">Oyun</span>
+                            <div class="controls">
+                                <button class="btn-red" id="p1GameMinus">-</button>
+                                <span class="value" id="p1Games">0</span>
+                                <button class="btn-green" id="p1GamePlus">+</button>
+                            </div>
+                        </div>
+                        <div class="score-display">
+                            <span class="label">Puan</span>
+                            <div class="controls">
+                                <button class="btn-red" id="p1PointMinus">-</button>
+                                <span class="value lg" id="p1Points">0</span>
+                                <button class="btn-green" id="p1PointPlus">+</button>
+                            </div>
+                        </div>
+                        <button class="btn-blue serve-btn" id="p1ServeBtn">Servis Bende</button>
+                    </div>
+
+                    <!-- Ortadaki Ayırıcı / Butonlar -->
+                    <div class="center-controls">
+                        <button class="btn-yellow" id="resetGameBtn" style="margin-bottom: 5px;">Puanları Sıfırla</button>
+                        <button class="btn-yellow" id="resetSetsBtn" style="margin-bottom: 5px; background-color: var(--accent-yellow); color: #000;">Oyunları Sıfırla</button>
+                        <button class="btn-red" id="resetMatchBtn">Maçı Sıfırla</button>
+                        <div class="tiebreak-toggle">
+                            <label><input type="checkbox" id="isTieBreak"> Tie-Break Modu</label>
+                            <label><input type="checkbox" id="isMatchTieBreak"> Maç TB (10 Puan)</label>
+                        </div>
+                        <hr style="margin:5px 0;">
+                        <button class="btn-blue" id="animSetPointBtn" style="padding:10px; font-size:0.9rem;">✨ Set Puanı</button>
+                        <button class="btn-green" id="animMatchPointBtn" style="padding:10px; font-size:0.9rem;">🏆 Maç Puanı</button>
+                    </div>
+
+                    <!-- Oyuncu 2 -->
+                    <div class="player-col">
+                        <input type="text" id="p2Name" class="player-name-input" value="Oyuncu 2">
+                        <div class="score-display">
+                            <span class="label">Set</span>
+                            <div class="controls">
+                                <button class="btn-red" id="p2SetMinus">-</button>
+                                <span class="value" id="p2Sets">0</span>
+                                <button class="btn-green" id="p2SetPlus">+</button>
+                            </div>
+                        </div>
+                        <div class="score-display">
+                            <span class="label">Oyun</span>
+                            <div class="controls">
+                                <button class="btn-red" id="p2GameMinus">-</button>
+                                <span class="value" id="p2Games">0</span>
+                                <button class="btn-green" id="p2GamePlus">+</button>
+                            </div>
+                        </div>
+                        <div class="score-display">
+                            <span class="label">Puan</span>
+                            <div class="controls">
+                                <button class="btn-red" id="p2PointMinus">-</button>
+                                <span class="value lg" id="p2Points">0</span>
+                                <button class="btn-green" id="p2PointPlus">+</button>
+                            </div>
+                        </div>
+                        <button class="btn-blue serve-btn" id="p2ServeBtn">Servis Bende</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Süre Kontrolleri -->
+            <div class="timer-panel panel">
+                <h3>Süre Yönetimi (Projeksiyonda Görünür)</h3>
+                <div class="timer-buttons">
+                    <button class="btn-blue" id="timerServeBtn">Servis (25s)</button>
+                    <button class="btn-blue" id="timerRest60Btn">Mola (60s)</button>
+                    <button class="btn-blue" id="timerRest120Btn">Set Arası (120s)</button>
+                    <button class="btn-red" id="timerStopBtn">Durdur</button>
+                    <button class="btn-yellow" id="timerResetBtn">Gizle/Sıfırla</button>
+                </div>
+                <div class="active-timer-display" id="desktopTimerDisplay">--</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- IPC implementation only works in Electron, handle fallback gracefully -->
+    <script>
+        const openProjBtn = document.getElementById('openProjectionBtn');
+        if (window.electronAPI) {
+            // we will need to inject contextBridge for electronAPI
+            openProjBtn.addEventListener('click', () => window.electronAPI.openProjection());
+        } else {
+            try {
+                // If contextIsolation is false or we use a hack:
+                const { ipcRenderer } = require('electron');
+                openProjBtn.addEventListener('click', () => ipcRenderer.send('open-projection'));
+            } catch(e) {
+                console.log("Not in electron environment or context isolation is true. Can't open projection directly from script.");
+            }
+        }
+    </script>
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="js/desktop.js"></script>
+</body>
+</html>

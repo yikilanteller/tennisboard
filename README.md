@@ -1,0 +1,35 @@
+# Skor Tabela (Offline Tennis Scoreboard)
+
+Tamamen çevrimdışı (offline) çalışabilen, yerel ağ üzerinden mobil cihazlarla kontrol edilebilen, TV yayını kalitesinde animasyonlara sahip masaüstü tenis skorbord uygulaması.
+
+## Özellikler
+
+* **Tamamen Çevrimdışı (Offline):** İnternet bağlantısına ihtiyaç duymadan bilgisayarın kendi ağı üzerinden çalışır.
+* **Mobil Kontrol Paneli:** Telefonunuzu veya tabletinizi kullanarak skoru, setleri ve süreleri kolayca yönetin.
+* **Çift Ekran / Projeksiyon Desteği:** Yönetim paneli ayrı, izleyiciler için projeksiyon paneli ayrıdır.
+* **Akıllı Skor Yönetimi:** Tenis kurallarına (Avantajlı veya Karar Puanı) uygun otomatik oyun hesaplaması ve Tie-Break desteği.
+* **Görsel Animasyonlar:** Set Puanı ve Maç Puanı gibi kritik anlar için profesyonel, TV yayını tarzı animasyonlar.
+* **Özelleştirme:** Kulüp logoları, sponsor logoları ve turnuva ismini ekleme imkanı (Logolar otomatik sıkıştırılarak hızlı aktarım sağlanır).
+
+## Teknolojiler
+
+* **Electron.js:** Masaüstü uygulaması ve pencere yönetimi.
+* **Node.js & Express:** Yerel web sunucusu.
+* **Socket.io:** Masaüstü, projeksiyon ve mobil ekranlar arası gerçek zamanlı veri senkronizasyonu.
+* **HTML/CSS/JS:** Tamamen özel, şık ve animasyonlu arayüz tasarımı.
+
+## Kurulum ve Çalıştırma
+
+### 1. Geliştirici Modunda Çalıştırma
+Projeyi bilgisayarınıza indirdikten sonra terminal üzerinden şu komutları çalıştırın:
+```bash
+npm install
+npm start
+```
+
+### 2. Taşınabilir (Portable) .exe Olarak Derleme
+Uygulamayı hiçbir kurulum gerektirmeyen tek bir `.exe` dosyası haline getirmek için:
+```bash
+npm run build
+```
+Derleme işlemi bittikten sonra `dist-app/` klasöründe yer alan `.exe` dosyasını herhangi bir Windows bilgisayarda direkt çalıştırabilirsiniz.

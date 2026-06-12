@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <title>Skor Tabela - Projeksiyon Ekranı</title>
+    <link rel="stylesheet" href="css/common.css">
+    <link rel="stylesheet" href="css/projection.css">
+</head>
+<body>
+    <div class="projection-container">
+        
+        <!-- Header: Logos & Tournament Name -->
+        <div class="header">
+            <img src="" id="clubLogo" class="logo" alt="Kulüp Logo" style="display:none;">
+            <h1 class="tournament-name" id="tName">#KortFinalleri</h1>
+            <img src="" id="sponsorLogo" class="logo" alt="Sponsor Logo" style="display:none;">
+        </div>
+
+        <!-- Timer Display (Hidden by default) -->
+        <div class="timer-overlay" id="timerOverlay">
+            <div class="timer-box">
+                <span class="timer-label" id="timerLabel">SERVİS SÜRESİ</span>
+                <span class="timer-value" id="timerValue">25</span>
+            </div>
+        </div>
+
+        <div class="animation-overlay" id="animationOverlay">
+            <span class="animation-text" id="animationText">SET PUANI</span>
+        </div>
+
+        <!-- Scoreboard -->
+        <div class="scoreboard-wrapper">
+            <!-- Header Row -->
+            <div class="score-header-row">
+                <div class="col-name"></div>
+                <div class="col-score">SET</div>
+                <div class="col-score">OYUN</div>
+                <div class="col-score highlight">PUAN</div>
+            </div>
+
+            <!-- Player 1 Row -->
+            <div class="player-row" id="p1Row">
+                <div class="col-name">
+                    <span class="serve-indicator" id="p1Serve">🎾</span>
+                    <span class="player-name" id="p1Name">Oyuncu 1</span>
+                </div>
+                <div class="col-score" id="p1Sets">0</div>
+                <div class="col-score" id="p1Games">0</div>
+                <div class="col-score highlight animate-val" id="p1Points">0</div>
+            </div>
+
+            <!-- Player 2 Row -->
+            <div class="player-row" id="p2Row">
+                <div class="col-name">
+                    <span class="serve-indicator" id="p2Serve">🎾</span>
+                    <span class="player-name" id="p2Name">Oyuncu 2</span>
+                </div>
+                <div class="col-score" id="p2Sets">0</div>
+                <div class="col-score" id="p2Games">0</div>
+                <div class="col-score highlight animate-val" id="p2Points">0</div>
+            </div>
+        </div>
+        
+    </div>
+
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="js/projection.js"></script>
+</body>
+</html>
