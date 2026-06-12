@@ -143,21 +143,30 @@ body {
     flex: 1;
 }
 
-.action-buttons {
+.player-controls {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-top: 10px;
+}
+
+.main-btn {
+    padding: 20px;
+    font-size: 1.5rem;
+    font-weight: 800;
+    width: 100%;
+}
+
+.sub-actions {
     display: flex;
     gap: 10px;
 }
 
-.huge-btn {
-    flex: 2;
-    padding: 20px;
-    font-size: 1.5rem;
-    font-weight: 800;
-}
-
-.action-buttons .btn-red {
+.sub-actions button {
     flex: 1;
-    font-size: 1.2rem;
+    padding: 12px;
+    font-size: 1.1rem;
+    font-weight: bold;
 }
 
 .mobile-timers {
